@@ -188,12 +188,19 @@ class GoogleSheetsLogger:
     No limits for personal use
     """
     
-    def __init__(self, credentials_path: str, spreadsheet_name: str):
+    def __init__(self, credentials_json: str, spreadsheet_name: str):
         scope = [
             'https://spreadsheets.google.com/feeds',
             'https://www.googleapis.com/auth/drive'
         ]
-        creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
+        try:
+            # Parse JSON string to dictionary
+            import json
+            creds_dict = json.loads(credentials_json)
+            creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+        except json.JSONDecodeError as e:
+            logger.error(f"Failed to parse credentials JSON: {e}")
+            raise
         self.client = gspread.authorize(creds)
         self.spreadsheet_name = spreadsheet_name
     
@@ -237,9 +244,18 @@ class CalendarManager:
     Includes Google Meet links (free)
     """
     
-    def __init__(self, credentials_path: str):
-        creds = Credentials.from_authorized_user_file(credentials_path)
-        self.service = build('calendar', 'v3', credentials=creds)
+    def __init__(self, credentials_json: str):
+            try:
+                # Parse JSON string to dictionary
+                creds_dict = json.loads(credentials_json)
+                creds = Credentials.from_authorized_user_info(creds_dict)
+                self.service = build('calendar', 'v3', credentials=creds)
+            except json.JSONDecodeError as e:
+                logger.error(f"Failed to parse calendar credentials JSON: {e}")
+                raise
+            except Exception as e:
+                logger.error(f"Failed to initialize CalendarManager: {e}")
+                raise
     
     def create_event(self, lead: Lead, processed: ProcessedLead) -> Optional[str]:
         """Create a Google Calendar event with FREE Meet link"""
