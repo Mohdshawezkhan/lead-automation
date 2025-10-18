@@ -1,0 +1,57 @@
+# === LLM (AI) ===
+groq==0.4.2
+# Connects to Groq AI for lead scoring
+# You use: from groq import Groq
+# Reason: Score leads with AI (0.0-1.0)
+
+# === Google Authentication ===
+google-auth==2.27.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+# Authenticate with Google services
+# You use: OAuth2 token for Calendar
+# Reason: Prove it's you to Google
+
+# === Google APIs ===
+google-api-python-client==2.116.0
+# Connect to Google Calendar API
+# You use: build('calendar', 'v3', ...)
+# Reason: Create calendar events
+
+gspread==5.12.4
+# Connect to Google Sheets API
+# You use: authorize(creds), open(), append_row()
+# Reason: Log leads to spreadsheet
+
+oauth2client==4.1.3
+# Older Google auth (still needed)
+# You use: ServiceAccountCredentials
+# Reason: Authenticate with service account
+
+# === Web Framework ===
+flask==3.0.2
+# Web server that receives lead submissions
+# You use: @app.route('/webhook/lead')
+# Reason: Handle incoming HTTP requests
+
+flask-cors==4.0.0
+# Allow cross-origin requests
+# You use: CORS(app)
+# Reason: Form submissions from different domains
+
+# === Deployment ===
+gunicorn==21.2.0
+# Production web server (Render/Railway uses this)
+# You use: gunicorn main:app (on server)
+# Reason: Reliable production serving
+
+# === Utilities ===
+python-dotenv==1.0.0
+# Load .env file with secrets
+# You use: load_dotenv(), getenv('KEY')
+# Reason: Load API keys securely
+
+requests==2.31.0
+# Make HTTP requests to Discord, etc
+# You use: requests.post(webhook_url, json=...)
+# Reason: Send webhook notifications

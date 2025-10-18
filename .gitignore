@@ -1,0 +1,34 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+* .env
+
+# 🔒 Credentials & Secrets
+*.env
+*.key
+*.pem
+*.crt
+*.p12
+*.json
+
+# Specifically ignore your credential folders/files
+
+credentials/
+config/
+secrets/
+.env
+.env.local
+.env.production
+
+# 🔑 Ignore token and cache files
+token.json
+*credentials.json
+*service_account.json
+
+# 🔧 System & IDE files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+.vscode/
+.idea/
+
