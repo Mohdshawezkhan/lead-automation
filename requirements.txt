@@ -1,5 +1,5 @@
 # === LLM (AI) ===
-groq==0.4.2
+groq==0.32.0
 # Connects to Groq AI for lead scoring
 # You use: from groq import Groq
 # Reason: Score leads with AI (0.0-1.0)
