@@ -1,7 +1,7 @@
 # Created by venv; see https://docs.python.org/3/library/venv.html
 * .env
 
-# 🔒 Credentials & Secrets
+# Credentials & Secrets
 *.env
 *.key
 *.pem
@@ -18,12 +18,12 @@ secrets/
 .env.local
 .env.production
 
-# 🔑 Ignore token and cache files
+# Ignore token and cache files
 token.json
 *credentials.json
 *service_account.json
 
-# 🔧 System & IDE files
+# System & IDE files
 __pycache__/
 *.pyc
 *.pyo
