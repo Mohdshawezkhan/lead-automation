@@ -1,23 +1,4 @@
-"""
-Lead Capture & Automation Workflow System - 100% FREE VERSION
-==============================================================
-Uses only free services with no charges:
-- Groq (Free LLM API - faster than OpenAI)
-- Google Sheets (Free)
-- Google Calendar (Free)
-- Discord Webhooks (Free alternative to Slack)
-- Gmail SMTP (Free)
-- Render.com / Railway (Free hosting)
 
-Requirements:
-pip install groq google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client gspread python-dotenv requests
-
-Setup:
-1. Get free Groq API key from https://console.groq.com
-2. Set up Google credentials (always free)
-3. Create Discord webhook (free Slack alternative)
-4. Use Gmail for emails (free)
-"""
 
 import os
 import json
@@ -150,7 +131,7 @@ class GroqProcessor:
         
         try:
             response = self.client.chat.completions.create(
-                model="llama-3.3-70b-versatile",  # FREE model
+                model="llama-3.3-70b-versatile", 
                 messages=[
                     {
                         "role": "system",
@@ -240,8 +221,7 @@ class GoogleSheetsLogger:
 
 class CalendarManager:
     """
-    Manages Google Calendar events - 100% FREE
-    Includes Google Meet links (free)
+    Manages Google Calendar events 
     """
     
     def __init__(self, credentials_json: str):
@@ -317,7 +297,6 @@ class NotificationService:
     
     def __init__(self):
         self.discord_webhook = os.getenv('DISCORD_WEBHOOK_URL')
-        # Gmail is free - just use your account
         self.gmail_user = os.getenv('GMAIL_USER')
         self.gmail_password = os.getenv('GMAIL_APP_PASSWORD')  # App-specific password
     
@@ -339,15 +318,14 @@ class NotificationService:
     
     def _send_discord(self, lead: Lead, processed: ProcessedLead, meet_link: Optional[str]) -> bool:
         """
-        Send Discord notification - 100% FREE
-        Better than Slack free tier (no message limit)
+        Send Discord notification
         
         Setup: Server Settings > Integrations > Webhooks > New Webhook
         """
         try:
             # Discord embed for rich formatting
             embed = {
-                "title": f"🚗 New Lead: {processed.name}",
+                "title": f"New Lead: {processed.name}",
                 "color": 5814783,  # Purple color
                 "fields": [
                     {"name": "📧 Email", "value": lead.email, "inline": True},
